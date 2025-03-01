@@ -45,7 +45,7 @@ try{
         return res.status(400).json({message : "Invalid Credentials"});
     }
 
-    const isValidPassword = await bcrypt.compare(password, userExist.password);  //comparing the password with the hashed password
+    const isValidPassword = await userExist.comparePassword(password);  //comparing the password with the hashed password
 
     if(isValidPassword){
         res.status(200).json({'msg': "Login successfully"});
