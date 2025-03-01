@@ -1,0 +1,13 @@
+const validate = (schema)=>async(req,res,next)=>{
+    try{
+        const parseBody = await schema.parseAsync(req.body);
+        req.body = parseBody;
+        next();
+    }
+    catch(err)
+    {
+        return res.status(400).json({msg : "Validation failed", error : err})
+    }
+}
+
+module.exports=validate;
