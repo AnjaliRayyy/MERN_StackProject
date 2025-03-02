@@ -5,10 +5,13 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Navbar from './components/Navbar'
 
 export default function App() {
   return (
+    <>
    <BrowserRouter>
+    <Navbar/>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
@@ -17,5 +20,6 @@ export default function App() {
       <Route path='/register' element={<Register/>}/>
     </Routes>
    </BrowserRouter>
+    </>
   )
 }
