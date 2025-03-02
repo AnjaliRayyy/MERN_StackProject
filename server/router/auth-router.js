@@ -7,7 +7,7 @@ const validate=require("../middlewares/validate-middleware")
 
 router.get('/home',authControllers.home);
 
-router.route("/auth/register")
+router.route("/register")
 .post(validate(signupSchema),authControllers.register)
 
 router.route("/login").post(validate(loginSchema),authControllers.login)
