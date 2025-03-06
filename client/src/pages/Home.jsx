@@ -14,7 +14,7 @@ export default function Home() {
                 <div className='herosection-text flex-col justify-around items-center' >
                     <h3 className='text-slate-400'>We are the World's Best IT Company</h3>
                     <h1 className='text-slate-50 text-4xl font-semibold my-4'>Welcome to Ray Technical</h1>
-                    <p className='herosection-img text-slate-300 my-4'>Are you ready to take your bussiness to the next level with cutting-edge <br /> IT solutions? Look no further! At Ray Technical, we specialize in <br />providing innovative IT services and solutions tailored to meet your unique needs.</p>
+                    <p className=' text-slate-300 my-4'>Are you ready to take your bussiness to the next level with cutting-edge <br /> IT solutions? Look no further! At Ray Technical, we specialize in <br />providing innovative IT services and solutions tailored to meet your unique needs.</p>
                     
                     {/* ----------------------Buttons-------------------------- */}
                         <div className='w-[50%] flex justify-between items-center'>
@@ -27,7 +27,7 @@ export default function Home() {
             {/* -------------------------------End of Text Section------------------------------- */}
 
             {/* ---------------------------------Image Section------------------------ */}
-                <div className='w-[35%]' ><img src={HeroSectionImage} alt="error" /></div>
+                <div className='herosection-img w-[35%]' ><img src={HeroSectionImage} alt="error" /></div>
             {/* -------------------------End of Image Section---------------------------------     */}
       </section>
     {/* --------------------------------End of Hero Section---------------------------------- */}
