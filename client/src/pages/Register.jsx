@@ -1,6 +1,7 @@
 import React from 'react'
 import RegisterImage from "../assets/RegisterPage_img.png"; 
 import { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 
 function Register() {
   const [user,setUser] =useState({
@@ -9,6 +10,8 @@ function Register() {
     password: "",
     phone: "",
   });
+
+const navigate = useNavigate();
 
   const handleChange=(e)=>{
     let name=e.target.name;
@@ -19,12 +22,36 @@ function Register() {
     });
   }
 
-  const handleSubmit=(e)=>{
+  const handleSubmit=async (e)=>{
     e.preventDefault();     //Prevents page reload
     console.log(user);
+    try{
+      const response=await fetch ("http://localhost:5000/api/auth/register",{
+        method: "POST",
+        headers:{
+          "Content-Type": "application/json",
+        },
+        body : JSON.stringify(user)
+      });
+
+      if(response.ok){
+        setUser({
+          username: "",
+        email: "",
+        password: "",
+        phone: "", 
+        })
+        navigate('/login');
+      }
+      console.log(response)
+    }
+    catch(err){
+      console.log("register",err);
+
+    }
   }
   return (
-    <div className='h-[36rem] flex justify-evenly  items-center bg-slate-950'>
+    <div className='h-[36rem] text-slate-50 flex justify-evenly  items-center bg-slate-950'>
       <div>
         <img src={RegisterImage} alt="error" />
       </div>

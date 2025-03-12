@@ -22,7 +22,7 @@ function Login() {
     console.log(user);
   }
   return (
-     <div className='h-[36rem] flex justify-evenly items-center bg-slate-950'>
+     <div className='h-[36rem] text-slate-50 flex justify-evenly items-center bg-slate-950'>
           <div  className="w-[35%]">
             <img   src={LoginImage} alt="error" />
           </div>

@@ -1,11 +1,21 @@
 require("dotenv").config();
 const express=require("express");
+const cors=require('cors');
 const app=express();
 const PORT=5000;
 const authRouter=require('./router/auth-router')
 const contactRouter=require('./router/contact-router')
 const connectDb=require('./utils/db');
 const errorMiddleWare = require("./middlewares/error-middleware");
+
+//Handling corse policy issue
+const corsOptions = {
+    origin: "http://localhost:5173",
+    methods : ["GET", "POST"],
+    credentials : true,
+}
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
 app.use('/api/auth',authRouter);

@@ -19,7 +19,7 @@ function Contact() {
     console.log(user);
   }
   return (
-    <div className='h-[36rem] flex justify-evenly items-center bg-slate-950'>
+    <div className='h-[36rem] text-slate-50 flex justify-evenly items-center bg-slate-950'>
         <div  className="w-[30%] flex-col justify-around items-center">
             <h1 className='text-4xl text-slate-50'>Contact Us</h1>
             <div className='h-[4px] w-40 rounded-md bg-violet-600 z-10 mb-10'></div>
@@ -46,7 +46,7 @@ function Contact() {
             {/* <!-------Message--------> */}
             <div>
               <label htmlFor="" className='mb-2 block text-slate-50'>Message</label>
-              <textarea  className="w-80 h-50 p-3 border border-gray-300 rounded-sm bg-gray-600 focus:outline-none focus:ring-2 focus:ring-violet-500" name="message" id="message"></textarea>
+              <textarea  className="w-80 h-50 p-3 border border-gray-300 rounded-sm bg-gray-600 focus:outline-none focus:ring-2 focus:ring-violet-500" name="message" id="message" value={user.message} onChange={handleChange} required></textarea>
             </div>
 
               {/* <!-- Register Button --> */}
