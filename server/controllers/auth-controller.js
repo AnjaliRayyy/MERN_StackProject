@@ -48,7 +48,7 @@ try{
     const isValidPassword = await userExist.comparePassword(password);  //comparing the password with the hashed password
 
     if(isValidPassword){
-        res.status(200).json({'msg': "Login successfully"});
+        res.status(200).json({'msg': "Login successfully", token : await userExist.generateToken(), userId: userExist._id.toString() });
     }
     else{
         res.status(400).json({message : "Invalid email or password"});

@@ -46,7 +46,7 @@ userSchema.pre("save", async function(next){
     }
 })
 
-//json wev tokens
+//json web tokens
 userSchema.methods.generateToken = async function(){
     try{
         return jwt.sign({

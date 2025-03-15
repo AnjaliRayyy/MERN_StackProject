@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import LoginImage from "../assets/LoginPage_img.png"; 
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../store/auth';
+
 function Login() {
   const [user, setUser] = useState({
       email : "",
@@ -9,6 +11,7 @@ function Login() {
   })
 
 const navigate = useNavigate();
+const {storeTokenInLs}=useAuth();
 
   const handleChange=(e)=>{
     let name=e.target.name;
@@ -30,8 +33,16 @@ const navigate = useNavigate();
         },
         body : JSON.stringify(user),
       })
+
       if(response.ok){
         alert("Login Successful!")
+
+        const res_data=await response.json();
+        console.log("res from server", res_data)
+
+        //stored the token in localhost
+        storeTokenInLs(res_data.token);
+
         setUser({
           email : "",
           password : "",

@@ -2,6 +2,7 @@ import React from 'react'
 import RegisterImage from "../assets/RegisterPage_img.png"; 
 import { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
+import { useAuth } from '../store/auth';
 
 function Register() {
   const [user,setUser] =useState({
@@ -12,6 +13,7 @@ function Register() {
   });
 
 const navigate = useNavigate();
+const { storeTokenInLs }=useAuth();
 
   const handleChange=(e)=>{
     let name=e.target.name;
@@ -35,6 +37,14 @@ const navigate = useNavigate();
       });
 
       if(response.ok){
+        alert("Account created successfully")
+        const res_data = await response.json();
+        console.log("res from server", res_data)
+
+        //stored the token in localhost
+        storeTokenInLs(res_data.token);
+      
+
         setUser({
           username: "",
         email: "",
@@ -42,6 +52,9 @@ const navigate = useNavigate();
         phone: "", 
         })
         navigate('/login');
+      }
+      else{
+        alert("Failed to create account")
       }
       console.log(response)
     }
