@@ -25,9 +25,25 @@ function Contact() {
     setContact({...user,[e.target.name]:e.target.value})
   }
   
-  const handleSubmit=(e)=>{
+  const handleSubmit=async (e)=>{
     e.preventDefault();
-    console.log(user);
+    try{
+      const response= await fetch ("http://localhost:5000/api/form/contact",{
+        method : "POST",
+        headers : {
+          "Content-Type" : "application/json",
+        },
+        body : JSON.stringify(contact),
+      });
+      if(response.ok){
+        alert("Message was sent successfully!");
+        setContact({...contact,message:""})
+      }
+    }
+    catch(err){
+      alert("Failed to send message");
+      console.log("Error : ",err);
+    }
   }
   return (
     <div className='h-[36rem] text-slate-50 flex justify-evenly items-center bg-slate-950'>

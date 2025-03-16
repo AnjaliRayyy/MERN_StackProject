@@ -12,7 +12,7 @@ function About() {
 
                   {/* ---------------------------------Text Section------------------------ */}
                       <div className='herosection-text flex-col justify-around items-center' >
-                          <h3 className='text-slate-400'>Welcome, {user? user.username : 'Guest'}</h3>
+                          <h3 className='text-slate-400 text-2xl'>Welcome, {user? user.username : 'User'}</h3>
                           <h1 className='text-slate-50 text-4xl font-bold my-4'>Why Choose Us?</h1>
 
                           <p className=' text-slate-100 my-4'>Expertise : Our team consists of experienced IT professionals who are <br /> passionate about staying up-to-date with the latest technologies and trends.</p>
