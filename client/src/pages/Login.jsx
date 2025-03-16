@@ -3,6 +3,7 @@ import { useState } from 'react'
 import LoginImage from "../assets/LoginPage_img.png"; 
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/auth';
+import { toast } from 'react-toastify';
 
 function Login() {
   const [user, setUser] = useState({
@@ -34,10 +35,11 @@ const {storeTokenInLs}=useAuth();
         body : JSON.stringify(user),
       })
 
+      const res_data=await response.json();
+      
       if(response.ok){
-        alert("Login Successful!")
-
-        const res_data=await response.json();
+        toast.success("Login Successful!")
+        
         console.log("res from server", res_data)
 
         //stored the token in localhost
@@ -49,9 +51,11 @@ const {storeTokenInLs}=useAuth();
         })
         navigate("/");
       }
-      else
-      alert("Invalid Credentials")
-      console.log(response)
+      else{
+        res_data.error? toast.error(res_data.error.issues[0].message): toast.error("Invalid Credentials")
+        console.log(res_data.error.issues[0].message)
+      }
+    
     }
     catch(err){
       console.log("login",err)

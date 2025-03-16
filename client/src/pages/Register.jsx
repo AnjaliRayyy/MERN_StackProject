@@ -3,7 +3,7 @@ import RegisterImage from "../assets/RegisterPage_img.png";
 import { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import { useAuth } from '../store/auth';
-
+import { toast } from 'react-toastify';
 function Register() {
   const [user,setUser] =useState({
     username: "",
@@ -37,7 +37,7 @@ const { storeTokenInLs }=useAuth();
       });
 
       if(response.ok){
-        alert("Account created successfully")
+        toast.success("Account created successfully")
         const res_data = await response.json();
         console.log("res from server", res_data)
 
@@ -51,12 +51,14 @@ const { storeTokenInLs }=useAuth();
         password: "",
         phone: "", 
         })
-        navigate('/login');
+        navigate('/');
       }
       else{
-        alert("Failed to create account")
+        const res_data = await response.json();
+        toast.error(res_data.error.issues[0].message)
+        console.log("res from server", res_data.error.issues[0].message)
       }
-      console.log(response)
+     
     }
     catch(err){
       console.log("register",err);
