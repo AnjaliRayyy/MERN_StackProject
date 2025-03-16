@@ -31,6 +31,18 @@ function Navbar() {
         >
           About
         </NavLink></li>
+        
+        {/* ------------------Services------------------  */}
+          <li className='mr-8'>
+          <NavLink to="/services" 
+          className={({ isActive }) => 
+            isActive 
+              ? "text-slate-100 underline decoration-violet-600 underline-offset-6 font-semibold" 
+              : "text-violet-600 hover:text-slate-100"
+          }
+        >
+          Services
+        </NavLink></li>
 
         {/* ------------------Contact------------------  */}
           <li className='mr-8'><NavLink to="/contact" 

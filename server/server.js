@@ -5,6 +5,7 @@ const app=express();
 const PORT=5000;
 const authRouter=require('./router/auth-router')
 const contactRouter=require('./router/contact-router')
+const servicesRouter=require('./router/service-router')
 const connectDb=require('./utils/db');
 const errorMiddleWare = require("./middlewares/error-middleware");
 
@@ -20,6 +21,7 @@ app.use(express.json());
 
 app.use('/api/auth',authRouter);
 app.use('/api/form',contactRouter);
+app.use('/api/data',servicesRouter);
 
 app.use(errorMiddleWare);
 

@@ -5,6 +5,7 @@ export const AuthContext=createContext();
 export const AuthProvider=({children})=>{
 const [token,setToken]=useState(localStorage.getItem('token'));
 const [user,setUser]=useState('');
+const [services,setServices]=useState([]);
 
     const storeTokenInLs=(serverToken)=>{
        return localStorage.setItem("token",serverToken);
@@ -42,9 +43,32 @@ const [user,setUser]=useState('');
      useEffect(()=>{
         userAuthentication()
      },[]);
+
+    //Fetching services
+    const fetchServices = async () => {
+        try{
+            const response = await fetch('http://localhost:5000/api/data/service',{
+                method:'GET',
+            })
+            const data = await response.json();
+            if (Array.isArray(data.message)) {
+                setServices(data.message);
+            } else {
+                console.error("Invalid services data format:", data.message);
+                setServices([]);
+            }
+        }
+        catch(err){
+            console.error("Error fetching services : ",err);
+        }
+    }
+
+    useEffect(()=>{
+        fetchServices()
+     },[]);
      
     return(
-        <AuthContext.Provider value={ {isLoggedIn,storeTokenInLs,LogoutUser,user} }>
+        <AuthContext.Provider value={ {isLoggedIn,storeTokenInLs,LogoutUser,user,services} }>
             {children}
         </AuthContext.Provider>
     )

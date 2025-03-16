@@ -8,6 +8,7 @@ import Register from './pages/Register'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Logout from './pages/Logout'
+import Services from './pages/Services'
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
+      <Route path="/services" element={<Services/>} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/login" element={<Login/>}/>
       <Route path='/register' element={<Register/>}/>
