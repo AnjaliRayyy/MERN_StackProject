@@ -1,17 +1,28 @@
 import React from 'react'
 import { useState } from 'react'
 import ContactImage from '../assets/ContactPage_img.png'
-
+import { useAuth } from '../store/auth'
 
 function Contact() {
-  const [user,setUser]=useState({
+  const [contact,setContact]=useState({
     username : "",
     email : "",
     message : ""
   })
-  
+  const [userData,setUserData]=useState(true);
+  const {user}=useAuth();
+
+  if(userData && user){
+    setContact({
+      username : user.username,
+      email : user.email,
+      message : "",
+    }); 
+    setUserData(false);
+    }
+
   const handleChange=(e)=>{
-    setUser({...user,[e.target.name]:e.target.value})
+    setContact({...user,[e.target.name]:e.target.value})
   }
   
   const handleSubmit=(e)=>{
@@ -33,20 +44,20 @@ function Contact() {
               <div>
                   <label className="mb-2 block text-slate-50 ">Username</label>
                   <input type="text" placeholder=""
-                    className="w-80 h-10 p-3 border border-gray-300 rounded-sm bg-gray-600 focus:outline-none focus:ring-2 focus:ring-violet-500" name='username' id='username' value={user.username} onChange={handleChange} required/>
+                    className="w-80 h-10 p-3 border border-gray-300 rounded-sm bg-gray-600 focus:outline-none focus:ring-2 focus:ring-violet-500" name='username' id='username' value={contact.username} onChange={handleChange} required/>
                 </div>
 
               {/* <!-- Email --> */}
               <div>
                 <label className="mb-2 block text-slate-50 ">Email</label>
                 <input type="email" placeholder=""
-                  className="w-80 h-10 p-3 border border-gray-300 rounded-sm bg-gray-600 focus:outline-none focus:ring-2 focus:ring-violet-500" name='email' id='email' value={user.email} onChange={handleChange} required/>
+                  className="w-80 h-10 p-3 border border-gray-300 rounded-sm bg-gray-600 focus:outline-none focus:ring-2 focus:ring-violet-500" name='email' id='email' value={contact.email} onChange={handleChange} required/>
               </div>
 
             {/* <!-------Message--------> */}
             <div>
               <label htmlFor="" className='mb-2 block text-slate-50'>Message</label>
-              <textarea  className="w-80 h-50 p-3 border border-gray-300 rounded-sm bg-gray-600 focus:outline-none focus:ring-2 focus:ring-violet-500" name="message" id="message" value={user.message} onChange={handleChange} required></textarea>
+              <textarea  className="w-80 h-50 p-3 border border-gray-300 rounded-sm bg-gray-600 focus:outline-none focus:ring-2 focus:ring-violet-500" name="message" id="message" value={contact.message} onChange={handleChange} required></textarea>
             </div>
 
               {/* <!-- Register Button --> */}
