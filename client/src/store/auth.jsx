@@ -8,6 +8,7 @@ const [user,setUser]=useState('');
 const [services,setServices]=useState([]);
 
     const storeTokenInLs=(serverToken)=>{
+        setToken(serverToken);
        return localStorage.setItem("token",serverToken);
     }
 

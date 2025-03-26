@@ -37,7 +37,7 @@ const { storeTokenInLs }=useAuth();
       });
 
       if(response.ok){
-        toast.success("Account created successfully")
+        toast.success("Account created successfully",{autoClose:3000})
         const res_data = await response.json();
         console.log("res from server", res_data)
 
@@ -55,7 +55,7 @@ const { storeTokenInLs }=useAuth();
       }
       else{
         const res_data = await response.json();
-        toast.error(res_data.error.issues[0].message)
+        toast.error(res_data.error.issues[0].message,{autoClose:3000})
         console.log("res from server", res_data.error.issues[0].message)
       }
      

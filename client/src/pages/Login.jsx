@@ -38,7 +38,7 @@ const {storeTokenInLs}=useAuth();
       const res_data=await response.json();
       
       if(response.ok){
-        toast.success("Login Successful!")
+        toast.success("Login Successful!",{autoClose:3000})
         
         console.log("res from server", res_data)
 

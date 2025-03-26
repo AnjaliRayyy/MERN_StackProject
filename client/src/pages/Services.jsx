@@ -29,8 +29,7 @@ const {services}=useAuth();
         )     
       })
       }
-      </div>
-      
+      </div> 
     </div>
   )
 }
